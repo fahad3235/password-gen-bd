@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Generator BD — পাসওয়ার্ড জেনারেটর</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="lock" aria-hidden="true">🔐</span>
+    <h1 data-i18n="appTitle">Password Generator BD</h1>
+  </div>
+  <button id="langToggle" class="lang-btn" type="button">বাংলা</button>
+</header>
+
+<main class="wrap">
+  <section class="card output-card">
+    <label class="field-label" data-i18n="yourPassword">Your password</label>
+    <div class="output-row">
+      <output id="passwordOut" class="password-out" aria-live="polite" data-i18n-ph="pressGenerate" data-ph="pressGenerate">Press Generate</output>
+      <button id="copyBtn" class="icon-btn" type="button" data-i18n-title="copy" title="Copy">📋</button>
+    </div>
+    <div id="copyMsg" class="copy-msg" aria-live="polite"></div>
+
+    <div class="strength">
+      <div class="strength-head">
+        <span data-i18n="strength">Strength</span>
+        <strong id="strengthLabel">—</strong>
+      </div>
+      <div class="meter" role="progressbar" aria-label="password strength">
+        <div id="meterFill" class="meter-fill"></div>
+      </div>
+      <div class="strength-meta">
+        <span><span data-i18n="entropy">Entropy</span>: <strong id="entropyBits">—</strong></span>
+        <span id="crackTime" class="crack-time"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <label for="lengthRange" class="field-label">
+        <span data-i18n="length">Length</span>: <strong id="lengthVal">16</strong>
+      </label>
+    </div>
+    <input id="lengthRange" type="range" min="8" max="64" value="16" step="1" class="slider">
+
+    <fieldset class="sets">
+      <legend data-i18n="charSets">Character sets</legend>
+      <label class="check"><input type="checkbox" id="setLower" checked> <span data-i18n="lower">Lowercase</span> <code>a–z</code></label>
+      <label class="check"><input type="checkbox" id="setUpper" checked> <span data-i18n="upper">Uppercase</span> <code>A–Z</code></label>
+      <label class="check"><input type="checkbox" id="setDigits" checked> <span data-i18n="digits">Digits</span> <code>0–9</code></label>
+      <label class="check"><input type="checkbox" id="setSymbols" checked> <span data-i18n="symbols">Symbols</span> <code>!@#…</code></label>
+    </fieldset>
+    <div id="setError" class="error" role="alert" hidden></div>
+
+    <fieldset class="sets">
+      <legend data-i18n="options">Options</legend>
+      <label class="check"><input type="checkbox" id="optNoAmbiguous"> <span data-i18n="noAmbiguous">Exclude ambiguous characters</span> <code>0OIl1</code></label>
+      <label class="check"><input type="checkbox" id="optMemorable"> <span data-i18n="memorable">Memorable mode (pronounceable)</span></label>
+    </fieldset>
+
+    <button id="genBtn" class="primary" type="button" data-i18n="generate">Generate password</button>
+
+    <p class="note">
+      <strong data-i18n="privacyTitle">Private by design.</strong>
+      <span data-i18n="privacy">Passwords are generated on your device with crypto.getRandomValues and are never stored, logged, or sent anywhere.</span>
+    </p>
+  </section>
+</main>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
